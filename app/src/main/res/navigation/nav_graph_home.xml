@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_home"
+    app:startDestination="@id/homeAdminFragment">
+
+    <fragment
+        android:id="@+id/homeAdminFragment"
+        android:name="com.example.mapsfirebase.view.admin.fragment.HomeAdminFragment"
+        android:label="fragment_home_admin"
+        tools:layout="@layout/fragment_home_admin" />
+    <fragment
+        android:id="@+id/mapsAdminFragment"
+        android:name="com.example.mapsfirebase.view.admin.fragment.MapsAdminFragment"
+        android:label="fragment_maps_admin"
+        tools:layout="@layout/fragment_maps_admin" >
+        <action
+            android:id="@+id/action_mapsAdminFragment_to_mapsActivity"
+            app:destination="@id/mapsActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/mapsActivity"
+        android:name="com.example.mapsfirebase.view.admin.MapsActivity"
+        android:label="activity_maps"
+        tools:layout="@layout/activity_maps" />
+</navigation>

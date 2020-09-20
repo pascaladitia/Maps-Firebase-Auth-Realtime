@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/dialog_image"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:padding="20dp"
+        android:src="@drawable/logo"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_image"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/dialog_nama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama"
+            android:textSize="15sp"
+            android:fontFamily="@font/cocon"
+            android:textColor="#605C5C"/>
+
+        <TextView
+            android:id="@+id/dialog_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="15sp"
+            android:fontFamily="@font/cocon"
+            android:layout_marginTop="10dp"
+            android:textColor="#605C5C"/>
+
+        <Button
+            android:id="@+id/dialog_btnClose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:text="Close"
+            android:textSize="18sp"
+            android:fontFamily="@font/cocon"
+            android:layout_marginTop="30dp"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
+</RelativeLayout>

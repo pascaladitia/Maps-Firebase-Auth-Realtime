@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.user.MapsUserActivity" >
+
+    <fragment
+        android:id="@+id/map_user"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="#45000000"
+        android:layout_below="@+id/maps_switch"
+        android:padding="10dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:text="Name"/>
+
+    <TextView
+        android:id="@+id/user_kordinat"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="#45000000"
+        android:padding="5dp"
+        android:layout_below="@+id/user_name"
+        android:textColor="#CDFFFFFF"
+        android:textStyle="italic"
+        android:text="Kordinat"/>
+
+    <TextView
+        android:id="@+id/user_kordinat2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="#45000000"
+        android:padding="5dp"
+        android:layout_below="@+id/user_kordinat"
+        android:textColor="#CDFFFFFF"
+        android:textStyle="italic"
+        android:text="Kordinat2"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/user_btnHybrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/input_text"
+            android:fontFamily="@font/cocon"
+            android:textColor="#2196F3"
+            android:text="Hybrid"/>
+
+        <Button
+            android:id="@+id/user_btnSatelit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/input_text"
+            android:fontFamily="@font/cocon"
+            android:textColor="#2196F3"
+            android:text="Satelit"/>
+
+        <Button
+            android:id="@+id/user_btnTerrain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/input_text"
+            android:fontFamily="@font/cocon"
+            android:textColor="#2196F3"
+            android:text="Terrain"/>
+
+        <Button
+            android:id="@+id/user_btnNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/input_text"
+            android:fontFamily="@font/cocon"
+            android:textColor="#2196F3"
+            android:text="Normal"/>
+    </LinearLayout>
+</RelativeLayout>

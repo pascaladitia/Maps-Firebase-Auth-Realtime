@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.user.fragment.HomeUserFragment">
+
+    <ImageView
+        android:layout_width="292dp"
+        android:layout_height="213dp"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/backround" />
+
+    <TextView
+        android:id="@+id/txt_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/cocon"
+        android:text="Home"
+        android:textColor="@android:color/white"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/homeUser_profil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="190dp"
+        android:layout_marginTop="40dp"
+        android:layout_toRightOf="@+id/txt_home"
+        android:drawableTop="@drawable/avatar"
+        android:fontFamily="@font/cocon"
+        android:text="Profil"
+        android:textColor="#2196F3"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/logo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#2196F3"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/cocon"
+            android:text="Welcome"/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Widget.Button.Colored"
+            android:id="@+id/user_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/button"
+            android:fontFamily="@font/cocon"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:text="Logout"/>
+
+    </LinearLayout>
+</RelativeLayout>

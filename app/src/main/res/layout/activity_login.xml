@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.login_register.LoginActivity">
+
+    <ImageView
+        android:layout_width="292dp"
+        android:layout_height="213dp"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/backround" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/cocon"
+        android:text="Welcome"
+        android:textColor="@android:color/white"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/cocon"
+            android:textColor="#2196F3"
+            android:textSize="25sp"
+            android:text="Login Here" />
+
+        <EditText
+            android:id="@+id/login_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input_text"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="15dp" />
+
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/input_text"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="15dp" />
+
+        <Button
+            android:id="@+id/btn_login"
+            style="@style/TextAppearance.AppCompat.Widget.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button"
+            android:fontFamily="@font/cocon"
+            android:padding="10dp"
+            android:text="LOGIN"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <Switch
+            android:id="@+id/login_admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:textColor="#2196F3"
+            android:textStyle="bold"
+            android:text="Login Sebagai Admin?"/>
+
+        <TextView
+            android:id="@+id/login_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register Here"/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Widget.Button.Colored"
+            android:id="@+id/login_google"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="18dp"
+            android:textSize="15sp"
+            android:textColor="#6A6969"
+            android:drawableLeft="@drawable/google"
+            android:text="Google Sign In" />
+
+    </LinearLayout>
+</RelativeLayout>

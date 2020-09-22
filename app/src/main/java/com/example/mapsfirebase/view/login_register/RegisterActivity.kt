@@ -83,14 +83,15 @@ class RegisterActivity : AppCompatActivity() {
                     var status = "status"
                     if (register_admin.isChecked) {
                         status = "admin"
+                        val user = User(status, nama, email, hp, job, alamat, password)
+                        currentUserDb.setValue(user)
+                        intentAdmin()
                     } else {
                         status = "user"
+                        val user = User(status, nama, email, hp, job, alamat, password)
+                        currentUserDb.setValue(user)
+                        intentUser()
                     }
-
-                    val user = User(status, nama, email, hp, job, alamat, password)
-                    currentUserDb.setValue(user)
-
-                    updateUI()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
@@ -100,8 +101,14 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun updateUI() {
+    private fun intentAdmin() {
         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+    }
+
+    private fun intentUser() {
+        val intent = Intent(this@RegisterActivity, MapsRegisterActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }

@@ -31,8 +31,11 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".view.login_register.MapsRegisterActivity"
+            android:label="@string/title_activity_maps_register"></activity>
+        <activity
             android:name=".view.user.MapsUserActivity"
-            android:label="@string/title_activity_maps_user"></activity>
+            android:label="@string/title_activity_maps_user" />
         <activity
             android:name=".view.admin.MapsActivity"
             android:label="@string/title_activity_maps" />
@@ -40,7 +43,7 @@
         <activity android:name=".view.admin.AdminActivity" />
         <activity android:name=".view.login_register.RegisterActivity" />
         <activity android:name=".view.login_register.LoginActivity" />
-        <activity android:name=".view.main.MainActivity" >
+        <activity android:name=".view.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

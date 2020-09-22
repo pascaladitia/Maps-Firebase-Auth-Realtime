@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.admin.MapsActivity" >
+    tools:context=".view.login_register.MapsRegisterActivity" >
 
     <fragment
-        android:id="@+id/map"
+        android:id="@+id/map_register"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.google.android.gms.maps.SupportMapFragment"/>
@@ -21,10 +21,10 @@
         android:textColor="#2196F3"
         android:fontFamily="@font/cocon"
         android:textSize="15sp"
-        android:text="Find Location here.."/>
+        android:text="Find You Location Here.."/>
 
     <TextView
-        android:id="@+id/maps_name"
+        android:id="@+id/mapsRegister_name"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="#45000000"
@@ -35,32 +35,32 @@
         android:text="Name"/>
 
     <TextView
-        android:id="@+id/maps_kordinat"
+        android:id="@+id/mapsRegister_kordinat"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="#45000000"
         android:padding="5dp"
-        android:layout_below="@+id/maps_name"
+        android:layout_below="@+id/mapsRegister_name"
         android:textColor="#CDFFFFFF"
         android:textStyle="italic"
         android:text="Kordinat"/>
 
     <TextView
-        android:id="@+id/maps_kordinat2"
+        android:id="@+id/mapsRegister_kordinat2"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="#45000000"
         android:padding="5dp"
-        android:layout_below="@+id/maps_kordinat"
+        android:layout_below="@+id/mapsRegister_kordinat"
         android:textColor="#CDFFFFFF"
         android:textStyle="italic"
         android:text="Kordinat2"/>
 
     <TextView
-        android:id="@+id/maps_save"
+        android:id="@+id/mapsRegister_save"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/maps_kordinat2"
+        android:layout_below="@id/mapsRegister_kordinat2"
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dp"
         android:drawableTop="@drawable/save"
@@ -74,7 +74,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_hybrid"
+            android:id="@+id/btn_hybridRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -85,7 +85,7 @@
             android:text="Hybrid"/>
 
         <Button
-            android:id="@+id/btn_satelit"
+            android:id="@+id/btn_satelitRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -96,7 +96,7 @@
             android:text="Satelit"/>
 
         <Button
-            android:id="@+id/btn_terrain"
+            android:id="@+id/btn_terrainRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -107,7 +107,7 @@
             android:text="Terrain"/>
 
         <Button
-            android:id="@+id/btn_normal"
+            android:id="@+id/btn_normalRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

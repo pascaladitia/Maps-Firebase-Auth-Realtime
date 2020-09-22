@@ -71,7 +71,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         if (item != null) {
             val update = LatLng(lat!!, lon!!)
             mMap.addMarker(MarkerOptions().position(update).title("Marker in $name")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)))
             mMap.moveCamera(CameraUpdateFactory.newLatLng(update))
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(update, 16f))
 
@@ -80,7 +80,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             maps_name.text = "$lat - $lon"
             maps_kordinat.text = nama
             maps_kordinat2.text = nama2
-            maps_switch.text = "Update ke Database?"
+            maps_save.text = "Update ke Database?"
         } else {
             // Add a marker in Sydney and move the camera
             val kampung = LatLng(-6.8148909, 106.6771815)
@@ -123,65 +123,53 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             maps_kordinat.text = nama
             maps_kordinat2.text = nama2
 
-            saveData(nama, nama2, lat, lon)
+            mMap.addMarker(MarkerOptions().position(LatLng(lat, lon)).title("Marker in $nama")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)))
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(lat, lon)))
+
+            maps_save.setOnClickListener {
+                saveData(nama, nama2, lat, lon)
+            }
         }
 
     }
 
-    private fun saveData(nama: String,nama2: String, lat: Double, lon: Double) {
-        if (maps_switch.isChecked) {
+    private fun saveData(nama: String, nama2: String, lat: Double, lon: Double) {
+        when (maps_save.text) {
+            "Update ke Database?" -> {
+                AlertDialog.Builder(this).apply {
+                    setTitle("Update")
+                    setMessage("Yakin ingin mengupdate Marker?")
+                    setCancelable(false)
 
-            when (maps_switch.text) {
-                "Update ke Database?" -> {
+                    setPositiveButton("Ya") { dialog, which ->
+                        val maps = Maps(nama, nama2, lat.toString(), lon.toString())
+                        reference?.child(item?.key ?: "")?.setValue(maps)
+                        finish()
+                    }
+                    setNegativeButton("Batal") { dialog, which ->
+                        dialog?.dismiss()
+                    }
+                }.show()
 
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Update")
-                        setMessage("Yakin ingin mengupdate Marker?")
-                        setCancelable(false)
-
-                        setPositiveButton("Ya") {dialog, which ->
-                            mMap.addMarker(MarkerOptions().position(LatLng(lat, lon)).title("Marker in $nama")
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)))
-                            mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(lat, lon)))
-
-                            val maps = Maps(nama, nama2, lat.toString(), lon.toString())
-                            reference?.child(item?.key ?: "")?.setValue(maps)
-                            finish()
-                        }
-                        setNegativeButton("Batal") {dialog, which ->
-                            dialog?.dismiss()
-                        }
-                    }.show()
-
-                }
-                else -> {
-
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Simpan")
-                        setMessage("Yakin ingin menyimpan Marker?")
-                        setCancelable(false)
-
-                        setPositiveButton("Ya") {dialog, which ->
-                            mMap.addMarker(MarkerOptions().position(LatLng(lat, lon)).title("Marker in $nama")
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)))
-                            mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(lat, lon)))
-
-                            val key = reference?.push()?.key
-                            val maps = Maps(nama, nama2, lat.toString(), lon.toString())
-                            reference?.child(key ?: "")?.setValue(maps)
-                            finish()
-                        }
-                        setNegativeButton("Batal") {dialog, which ->
-                            dialog?.dismiss()
-                        }
-                    }.show()
-                }
             }
+            else -> {
+                AlertDialog.Builder(this).apply {
+                    setTitle("Simpan")
+                    setMessage("Yakin ingin menyimpan Marker?")
+                    setCancelable(false)
 
-        } else {
-            mMap.addMarker(MarkerOptions().position(LatLng(lat, lon)).title("Marker in $nama")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)))
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(lat, lon)))
+                    setPositiveButton("Ya") { dialog, which ->
+                        val key = reference?.push()?.key
+                        val maps = Maps(nama, nama2, lat.toString(), lon.toString())
+                        reference?.child(key ?: "")?.setValue(maps)
+                        finish()
+                    }
+                    setNegativeButton("Batal") { dialog, which ->
+                        dialog?.dismiss()
+                    }
+                }.show()
+            }
         }
     }
 

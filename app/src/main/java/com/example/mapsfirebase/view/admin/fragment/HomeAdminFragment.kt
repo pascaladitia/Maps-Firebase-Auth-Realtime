@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.Fragment
 import com.example.mapsfirebase.R
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.custom_dialog_profil.*
@@ -18,6 +21,7 @@ class HomeAdminFragment : Fragment() {
 
     private var auth: FirebaseAuth? = null
     private var db: FirebaseDatabase? = null
+    private var client: GoogleSignInClient? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,12 +36,23 @@ class HomeAdminFragment : Fragment() {
 
         db = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
+
+        initGmail()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initButton()
+    }
+
+    private fun initGmail() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        client = context?.let { GoogleSignIn.getClient(it, gso) }
     }
 
     private fun initButton() {
@@ -48,6 +63,7 @@ class HomeAdminFragment : Fragment() {
                 setCancelable(false)
 
                 setPositiveButton("Ya") {dialog, which ->
+                    client?.signOut()
                     activity?.onBackPressed()
                 }
                 setNegativeButton("Batal") {dialog, which ->

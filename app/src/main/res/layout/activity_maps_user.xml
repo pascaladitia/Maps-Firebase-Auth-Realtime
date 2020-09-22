@@ -16,7 +16,6 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="#45000000"
-        android:layout_below="@+id/maps_switch"
         android:padding="10dp"
         android:textColor="#fff"
         android:textStyle="bold"
@@ -43,6 +42,18 @@
         android:textColor="#CDFFFFFF"
         android:textStyle="italic"
         android:text="Kordinat2"/>
+
+    <TextView
+        android:id="@+id/user_marker"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_kordinat2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:gravity="center"
+        android:drawableTop="@drawable/marker2"
+        android:fontFamily="@font/cocon"
+        android:text="Tap to You Location"/>
 
     <LinearLayout
         android:layout_width="match_parent"

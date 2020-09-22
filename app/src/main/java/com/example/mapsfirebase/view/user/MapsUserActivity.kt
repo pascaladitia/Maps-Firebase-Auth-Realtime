@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.mapsfirebase.R
@@ -15,21 +16,22 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_maps_user.*
 
 class MapsUserActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private var reference: DatabaseReference? = null
+    private var referenceReg: DatabaseReference? = null
     private var db: FirebaseDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps_user)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map_user) as SupportMapFragment
+        val mapFragment =
+            supportFragmentManager.findFragmentById(R.id.map_user) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
         ActivityCompat.requestPermissions(
@@ -46,6 +48,7 @@ class MapsUserActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun initView() {
         db = FirebaseDatabase.getInstance()
         reference = db?.reference?.child("maps")
+        referenceReg = db?.reference?.child("maps_register")
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -62,8 +65,7 @@ class MapsUserActivity : AppCompatActivity(), OnMapReadyCallback {
         val lon = data?.lon?.toDouble()
 
         val marker = LatLng(lat!!, lon!!)
-        mMap.addMarker(MarkerOptions().position(marker).title("Marker in $name")
-            .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)))
+        mMap.addMarker(MarkerOptions().position(marker).title("Marker in $name"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(marker))
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker, 16f))
 
@@ -78,6 +80,26 @@ class MapsUserActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.uiSettings.isCompassEnabled = true
     }
 
+    private fun getData() {
+        referenceReg?.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                val namereg = snapshot.child("register_nama").value.toString()
+                val name2reg = snapshot.child("register_nama2").value.toString()
+                val latreg = snapshot.child("register_lat").value.toString()
+                val lonreg = snapshot.child("register_lon").value.toString()
+
+                val youPosition = LatLng(latreg.toDouble(), lonreg.toDouble())
+                mMap.addMarker(MarkerOptions().position(youPosition).title("Your Location in $namereg")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)))
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w("TAG", "Failed to read value.", error.toException())
+            }
+        })
+    }
+
     private fun initButton() {
         user_btnHybrid.setOnClickListener {
             mMap.mapType = GoogleMap.MAP_TYPE_HYBRID
@@ -90,6 +112,10 @@ class MapsUserActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         user_btnNormal.setOnClickListener {
             mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
+        }
+
+        user_marker.setOnClickListener {
+            getData()
         }
     }
 

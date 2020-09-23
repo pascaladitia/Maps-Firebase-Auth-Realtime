@@ -59,21 +59,33 @@ class MapsUserActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun dataMaps() {
-        var data = intent.getParcelableExtra<Maps>("data")
-        var name = data?.nama
-        var lat = data?.lat?.toDouble()
-        val lon = data?.lon?.toDouble()
 
-        val marker = LatLng(lat!!, lon!!)
-        mMap.addMarker(MarkerOptions().position(marker).title("Marker in $name"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(marker))
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker, 16f))
+        val dataMaps = ArrayList<Maps>()
 
-        val nama = convertCoordinat(lat, lon)
-        val nama2 = convertCoordinat2(lat, lon)
-        user_name.text = "$lat - $lon"
-        user_kordinat.text = nama
-        user_kordinat2.text = nama2
+        reference?.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                for (datas in snapshot.children) {
+                    val key = datas.key
+
+                    val nama = datas.child("nama").value.toString()
+                    val nama2 = datas.child("nama2").value.toString()
+                    val lat = datas.child("lat").value.toString()
+                    val lon = datas.child("lon").value.toString()
+
+                    val maps = Maps(nama, nama2, lat, lon, key)
+                    dataMaps.add(maps)
+
+                    val marker = LatLng(lat.toDouble(), lon.toDouble())
+                    mMap.addMarker(MarkerOptions().position(marker).title("Marker in $nama"))
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(marker))
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker, 16f))
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Log.w("TAG", "Failed to read value.", error.toException())
+            }
+        })
 
         //setting zoom in/out
         mMap.uiSettings.isZoomControlsEnabled = true
@@ -92,6 +104,12 @@ class MapsUserActivity : AppCompatActivity(), OnMapReadyCallback {
                 val youPosition = LatLng(latreg.toDouble(), lonreg.toDouble())
                 mMap.addMarker(MarkerOptions().position(youPosition).title("Your Location in $namereg")
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)))
+
+                val nama = convertCoordinat(latreg.toDouble(), lonreg.toDouble())
+                val nama2 = convertCoordinat2(latreg.toDouble(), lonreg.toDouble())
+                user_name.text = "$latreg - $lonreg"
+                user_kordinat.text = nama
+                user_kordinat2.text = nama2
             }
 
             override fun onCancelled(error: DatabaseError) {

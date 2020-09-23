@@ -3,28 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.user.fragment.MapsUserFragment">
+    tools:context=".view.user.fragment.HomeUserFragment">
 
     <ImageView
-        android:id="@+id/image"
         android:layout_width="292dp"
         android:layout_height="213dp"
         android:layout_alignParentTop="true"
         android:src="@drawable/backround" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="160dp"
-        android:fontFamily="@font/cocon"
-        android:textColor="#2196F3"
-        android:textSize="25sp"
-        android:text="Marker" />
-
-    <TextView
-        android:id="@+id/userMaps_home"
+        android:id="@+id/txt_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
@@ -34,12 +22,41 @@
         android:textColor="@android:color/white"
         android:textSize="30sp" />
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_user"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/item_user"
-        android:layout_below="@+id/image"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/logo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#2196F3"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/cocon"
+            android:text="Get Marker Here..."/>
+
+        <Button
+            style="@style/TextAppearance.AppCompat.Widget.Button.Colored"
+            android:id="@+id/mapsUser_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/input_text"
+            android:fontFamily="@font/cocon"
+            android:textSize="20sp"
+            android:textColor="#2196F3"
+            android:text="Start"/>
+
+    </LinearLayout>
 </RelativeLayout>
